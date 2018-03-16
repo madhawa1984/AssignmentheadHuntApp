@@ -1,0 +1,11 @@
+application:
+            name: HeadHuntApp-001
+            execution_profile: dev
+            datasource: 
+                       dburl: http://localhost
+                       port: 8087
+                       database_name: headhunt
+                       user_name: appuser
+                       password: 12345   
+            
+              
