@@ -29,8 +29,9 @@ public class HeadHuntController {
 	}
 	
 	@RequestMapping(value="/headHunterfrm",method=RequestMethod.GET)
-	public String HeadHunterregisterView(Model model) {
-		model.addAttribute("headHunter",new HeadHunterDto()); // empty form
+	public String HeadHunterregisterView(Model model) throws Exception {
+		model.addAttribute("headHunterDtokey",new HeadHunterDto()); 
+		// this is equalt to the th: command object in thymeleaf view 
 		return "registerheadhunterform";
 	}
 	

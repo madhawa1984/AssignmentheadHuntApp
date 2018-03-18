@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Recruitment Registartion</h1>
+    <form action="#" th:action="@{/saveRecruitment}" th:object="${recruitmentDtoKey}" method="post">
+    	
+    	<p>Head Hunter Id: <input type="text" th:field="*{headHuntId}" /></p>
+    	
+    	<p>Recruitment Type: 
+    	<select class="form-control" th:field="*{recruitMentType}">
+		      <option th:each="dropDownItem : ${recruitmentDtoKey.possibleRecruitMentTypes}" 
+			  th:value="${dropDownItem.value}" 
+			  th:text="${dropDownItem.key}" />
+	    </select>
+	    </p> 
+	    <p>Recruitment Date: <input type="text" th:field="*{recruitmentDate}" />
+	    </p> 
+	    <table>
+	    <tr><th>Employee First Name: </th><th>Employee Last Name: </th><th>Employee Skill: </th></tr>
+	    
+	    <tr th:each="employee ,rowStat : *{listOfEmployee}">
+	    <td><p><input type="text" th:field="*{listOfEmployee[__${rowStat.index}__].employeeFirstName}" /></p></td>
+	    <td><p><input type="text" th:field="*{listOfEmployee[__${rowStat.index}__].employeeLastName}" /></p></td>
+	    <td><p><input type="text" th:field="*{listOfEmployee[__${rowStat.index}__].skill}" /></p></td>
+	    </tr>
+	    
+	    <tr><td colspan="2"><p><input type="submit" value="Submit" /></td>
+	    <td colspan="2"><input type="reset" value="Reset" /></p></td></tr>
+	     
+	    </table>
+        
+        
+        
+        
+        
+    
+    
+   
+    
+    
+    </form>
+</body>
+</html>

@@ -2,6 +2,7 @@ package com.headhunt.managementportal.dao;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,33 @@ public class HeadHunterDaoImpl implements HeadHunterDao {
 	@Override
 	public HeadHunter getHeadHunterById(long Id) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		
+		Session session = null;
+		HeadHunter headhunter = null;
+        try {
+            session = this.sesionFactory.openSession();
+            org.hibernate.query.Query query = session.createQuery("from HeadHunter where Id=:id");
+            query.setParameter("id", Id);
+            List<HeadHunter> headhunterlist = query.list();
+            if (!headhunterlist.isEmpty()) {
+            	headhunter = headhunterlist.get(0);
+                // initialize the other relationships
+                Hibernate.initialize(headhunter.getRecruitments());
+                
+            }
+            session.clear();
+            session.close();
+        }catch(Exception e) {
+            e.printStackTrace();
+            
+        }
+        finally {
+            if(session!=null) {
+                session.close();
+            }
+
+        }
+		return headhunter;
 	}
 
 	@Override

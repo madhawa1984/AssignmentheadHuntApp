@@ -13,7 +13,7 @@ public interface HeadHunterService {
 	public HeadHunterDto getHeadHunterByLastName() throws Exception;;
 	public HeadHunterDto saveHeadHunter(HeadHunterDto headHunter) throws Exception;;
 	public HeadHunterDto modifyHeadHunter(HeadHunterDto headHunter) throws Exception;;
-	public HeadHunterDto dropHeadHunter(long id) throws Exception;;
+	public HeadHunterDto dropHeadHunter(long id) throws Exception;
 	
 
 }

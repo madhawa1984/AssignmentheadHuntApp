@@ -1,11 +1,14 @@
 package com.headhunt.managementportal.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +25,15 @@ public class HeadHunter implements Serializable {
 	private String LastName;
 	@Column(name="DATE_REGISTRERED")
 	private String registeredDate;
-	// private ArrayList<RecruitMents> recruitments;
+	public List<Recruitment> getRecruitments() {
+		return recruitments;
+	}
+	public void setRecruitments(List<Recruitment> recruitments) {
+		this.recruitments = recruitments;
+	}
+	@OneToMany(cascade=CascadeType.ALL,mappedBy = "headHunter")
+	private List<Recruitment> recruitments;
+	
 	public Long getId() {
 		return Id;
 	}

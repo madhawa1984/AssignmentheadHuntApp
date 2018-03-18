@@ -1,0 +1,81 @@
+package com.headhunt.managementportal.dao;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
+import com.headhunt.managementportal.model.Recruitment;
+
+@Service("recruitmentdaoimplBean")
+public class RecruitmentDaoImpl implements RecruitmentDao {
+	
+	@Qualifier("sessionFactoryBean")
+    @Autowired
+    private SessionFactory sesionFactory;
+
+	@Override
+	public List<Recruitment> getRecruitmentByHeadHuntId(long headHuntId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Recruitment getRecruitmentById(long Id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Recruitment getRecruitmentByEmpId(long empId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Recruitment> getAllRecruitments() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void createRecruitment(Recruitment recruitment) throws Exception {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+        Session session=null;
+        try {
+            session = this.sesionFactory.openSession();
+            //session = this.sessionFactoryBean.getCurrentSession();
+            session.beginTransaction();
+            session.save(recruitment);
+            session.getTransaction().commit();
+            session.clear();
+            session.close();
+        }catch(Exception e) {
+            e.printStackTrace();
+            throw new Exception();
+
+        }finally {
+            if(session!=null) {
+                session.close();
+            }
+        }
+		
+	}
+
+	@Override
+	public void modifyRecruitment(Recruitment recruitment) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dropRecruitment(Recruitment recruitment) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
