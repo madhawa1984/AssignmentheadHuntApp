@@ -5,8 +5,6 @@ import java.util.Map;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-@Component("appsettingsbean")
 @ConfigurationProperties(prefix="application")
 public class ApplicationSettings {
 	

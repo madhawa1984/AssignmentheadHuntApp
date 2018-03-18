@@ -6,6 +6,8 @@
 Welcome to the Head hunters administration
 Orain Solutions
 <P th:text="${companyname}">
-<P th:text="${@appsettingsbean.name}"> check on how the bean n
+<P th:text="${appsettingsmodel.name}"> check on how the bean n
+<P th:text="${appsettingsmodel.datasource.get('dburl')}">dburl
+<P th:text="${appsettingsmodel.datasource.get('driver.classname')}">
 </body>
 </html>

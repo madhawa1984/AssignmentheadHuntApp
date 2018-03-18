@@ -20,17 +20,8 @@ import com.headhunt.managementportal.dto.ApplicationSettings;
 @Controller
 public class IndexController {
 	
-	
-	final private ApplicationSettings appSettings; 
-	
 	@Autowired
-	private IndexController(@Qualifier("appsettingsbean")ApplicationSettings appSettings) {
-		this.appSettings=appSettings;
-		/* contructor based injection to Make sure the application properties will not to be 
-		 * modified at the usage
-		 * 
-		 */
-	}
+	private ApplicationSettings appSettings; 
 	
 
 	
