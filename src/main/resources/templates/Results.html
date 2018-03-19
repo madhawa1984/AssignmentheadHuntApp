@@ -1,12 +1,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Welcome to the Head hunters administration- Portal</title>
+<style>
+	  .grid-container {
+		  display: grid;
+		  grid-template-columns: auto auto auto auto;
+		  grid-gap: 10px;
+		  /* background-color: #2196F3; */
+		  background-color: #f39c12;
+		  padding: 10px;
+		  height:100vh;
+	  }
+	</style>
 </head>
 <body>
+<center>
+<div class="grid-container">
+<P style="font-weight: bold;" th:if="${results != null}" th:text="${results}"/>
 
-
-<P th:if="${results != null}" th:text="${results}"/>
-
-
+</div>
+</center>
 </body>
 </html>

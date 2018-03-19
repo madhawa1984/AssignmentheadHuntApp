@@ -1,8 +1,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Welcome to the Head hunters administration- Portal</title>
+<style>
+	  .grid-container {
+		  display: grid;
+		  grid-template-columns: auto auto auto auto;
+		  grid-gap: 10px;
+		  /* background-color: #2196F3; */
+		  background-color: #f39c12;
+		  padding: 10px;
+		  height:100vh;
+	  }
+	</style>
 </head>
 <body>
+      <div class="grid-container">
                Recruitments List For the Head Hunter ID : 
       <div th:if="${!ListOfRecruitments.empty}"><span th:text="${ListOfRecruitments[0].headHuntId}"/></div>
       <table> 
@@ -17,11 +29,12 @@
 		      	<td th:text="${empRow.index==0} ? ${RecruitmentDto.id} : ' '"></td>
 		      	<td th:text="${empRow.index==0} ? ${RecruitmentDto.recruitmentDate} : ' '"> </td>
 		        <td th:text="${empRow.index==0} ? ${RecruitmentDto.recruitMentType} : ' '"> </td>   
-		        <td th:text="${emp.employeeFirstName}"></td>
-		        <td > link </td>
+		        <td th:text="${emp.employeeFirstName} + ${emp.employeeLastName}"></td>
+		        <td >xxx </td>
 		      </tr>
 		  </div>    
       </div>
     </table>
+    </div>
 </body>
 </html>

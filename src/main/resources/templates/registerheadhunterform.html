@@ -3,14 +3,32 @@
 <head>
     <title>Form Submission</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+	  .grid-container {
+		  display: grid;
+		  grid-template-columns: auto auto auto auto;
+		  grid-gap: 10px;
+		  /* background-color: #2196F3; */
+		  background-color: #f39c12;
+		  padding: 10px;
+		  height:100vh;
+	  }
+	</style>
 </head>
 <body>
-	<h1>Head Hunter Form</h1>
+<center>
+	<h1>Talent Hunter Registration</h1>
+	<div class="grid-container">
+	
     <form action="#" th:action="@{/saveHeadHunter}" th:object="${headHunterDtokey}" method="post">
-    	<p>Id: <input type="text" th:field="*{id}" /></p>
-        <p>First Name: <input type="text" th:field="*{firstName}" /></p>
-        <p>Last Name: <input type="text" th:field="*{lastName}" /></p>
-        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <table>
+    <tr><td><p>Id:</p></td> <td> <input type="text" th:field="*{id}" /></td></tr>
+    <tr><td><p>First Name:</p></td> <td> <input type="text" th:field="*{firstName}" /></td></tr>
+    <tr><td><p>Last Name:</p></td> <td> <input type="text" th:field="*{lastName}" /></td></tr>
+    <tr><td><input type="submit" value="Submit" /></td> <td> <input type="reset" value="Reset" /></td></tr>
+    </table>    
     </form>
+    </div>
+</center>
 </body>
 </html>

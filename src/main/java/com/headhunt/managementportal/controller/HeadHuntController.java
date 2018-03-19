@@ -40,7 +40,7 @@ public class HeadHuntController {
 		
 		headHunter.saveHeadHunter(headHunt);
 		// head hunt service save method
-		model.addAttribute("results","HeadHunter "+headHunt.getFirstName()+" "+headHunt.getLastName()+" is Successfully Added"); // add the saved object details as well
+		model.addAttribute("results"," Talent Hunter Profile Created For Mr. "+headHunt.getFirstName()+" "+headHunt.getLastName()+" "); // add the saved object details as well
 		return "Results";
 	}
 	

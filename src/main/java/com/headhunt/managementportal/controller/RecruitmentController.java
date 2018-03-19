@@ -46,6 +46,7 @@ public class RecruitmentController {
 	@RequestMapping(value="/saveRecruitment",method=RequestMethod.POST)
 	public String saveRecruitment(@ModelAttribute RecruitmentDto recruitment, BindingResult errors, Model model) throws Exception {
 		recruitmentService.saveRecruitments(recruitment);
+		model.addAttribute("results","Recruitment is Successfully created. Id :- "+recruitment.getId()+" Type: "+recruitment.getRecruitMentType() +" Date:"+recruitment.getRecruitmentDate()+" ");
 		return "Results";
 	}
 
