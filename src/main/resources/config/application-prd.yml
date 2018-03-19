@@ -1,23 +1,17 @@
 application:
             name: HeadHuntApp-001
             execution_profile: dev
-            datasource: 
+            datasource:
                        dburl: localhost
-                       #port: 8087
-                       database_name: test
-                       # connectionstring: jdbc:h2:database/headhunt2;DB_CLOSE_ON_EXIT=FALSE
-                       connectionstring: jdbc:h2:mem:mydb
-                       # connectionstring: jdbc:h2:file:/pearson/99-x/managementportal
-                       user_name: sa
-                       password:   
-                       hibernate.dialect : org.hibernate.dialect.H2Dialect
+                       port : 3306
+                       databasename: dwt
+                       connectionstring: jdbc:mysql://${application.datasource.dburl}:${application.datasource.port}/dwt
+                       uname : dwtuser
+                       pwd : dwtuser123
+                       hibernate.dialect : org.hibernate.dialect.MySQL5Dialect
                        hibernate.show_sql : true
-                       logging.org.hibernate.tool.hbm2ddl : DEBUG
-                       logging.org.hibernate.SQL : DEBUG
                        # hibernate.hbm2ddl.auto : create-drop
-                       hibernate.hbm2ddl.auto : create-drop
-                       driver.classname : org.h2.Driver
-                       hibernate.temp.use_jdbc_metadata_defaults : false
+                       hibernate.hbm2ddl.auto : update
 spring.h2.console.enabled: true
 spring.h2.console.path: /h2
                        

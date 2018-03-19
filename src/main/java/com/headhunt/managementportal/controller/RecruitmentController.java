@@ -9,12 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.headhunt.managementportal.Service.RecruitmentService;
 import com.headhunt.managementportal.dto.EmployeeDto;
-import com.headhunt.managementportal.dto.HeadHunterDto;
 import com.headhunt.managementportal.dto.RecruitmentDto;
 
 @Controller
@@ -24,10 +24,19 @@ public class RecruitmentController {
 	@Autowired
 	private RecruitmentService recruitmentService; 
 	
+	@RequestMapping(value="/hunter/{hunterId}/recruitments",method=RequestMethod.GET)
+	public String viewRecruitments(@PathVariable String hunterId,Model model) throws Exception {
+		model.addAttribute("ListOfRecruitments", recruitmentService.getHRecruitmentsByHunterId(Long.parseLong(hunterId)));
+		return "recruitmentslist";
+	}
+	
 	@RequestMapping(value="/registerRecruitment",method=RequestMethod.GET)
 	public String recruitmentForm(Model model) throws Exception {
 		RecruitmentDto inialfrm = new RecruitmentDto();
 		List<EmployeeDto> listOfEmployee = new ArrayList<EmployeeDto>();
+		listOfEmployee.add(new EmployeeDto());
+		listOfEmployee.add(new EmployeeDto());
+		listOfEmployee.add(new EmployeeDto());
 		listOfEmployee.add(new EmployeeDto());
 		inialfrm.setListOfEmployee(listOfEmployee);
 		model.addAttribute("recruitmentDtoKey",inialfrm);

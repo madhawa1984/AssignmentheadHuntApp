@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.headhunt.managementportal.dao.HeadHunterDao;
 import com.headhunt.managementportal.dao.RecruitmentDao;
 import com.headhunt.managementportal.dto.EmployeeDto;
+import com.headhunt.managementportal.dto.HeadHunterDto;
 import com.headhunt.managementportal.dto.RecruitmentDto;
 import com.headhunt.managementportal.model.Employee;
 import com.headhunt.managementportal.model.Recruitment;
@@ -38,9 +39,21 @@ public class RecruitmentServiceImpl implements RecruitmentService {
 	}
 
 	@Override
-	public List<RecruitmentDto> getHRecruitmentsByHunterId() throws Exception {
+	public List<RecruitmentDto> getHRecruitmentsByHunterId(long headHunterId) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		List<Recruitment> recruitmentLst = recruitmentdao.getRecruitmentByHeadHuntId(headHunterId);
+		List<RecruitmentDto> dtolist = new ArrayList<RecruitmentDto>();
+		// convert the recruitment to the DTO's
+		for(Recruitment recruit:recruitmentLst) {
+			// if needed let the each recruitment object to be initialized
+		    // Hibernate.initilize(recruit);
+			// recruit.getHeadHunter();
+			// recruit.getEmployee();
+			dtolist.add(Entity2tomapRecruitmentDto(recruit));
+			
+		}
+		
+		return dtolist;
 	}
 
 	@Override
@@ -80,6 +93,7 @@ public class RecruitmentServiceImpl implements RecruitmentService {
 			emp.setEmployeeFirstName(empDto.getEmployeeFirstName());
 			emp.setEmployeeLastName(empDto.getEmployeeLastName());
 			emp.setSkill(empDto.getSkill());
+			emp.setRecruitment(recruitment); // other wise relationship will be brake
 			list.add(emp);
 		}
 		recruitment.setEmployee(list);
@@ -88,14 +102,26 @@ public class RecruitmentServiceImpl implements RecruitmentService {
 		return recruitment;
 	}
 
-	private RecruitmentDto Entity2tomapHeadHunter(Recruitment recruitment) {
-		/*RecruitmentDto recruitmentdto = new RecruitmentDto(); 
+	private RecruitmentDto Entity2tomapRecruitmentDto(Recruitment recruitment) {
+		RecruitmentDto recruitmentdto = new RecruitmentDto();
 		recruitmentdto.setId(recruitment.getId());
-		recruitmentdto.setFirstName(recruitment.get); // employe details
-		recruitmentdto.setLastName(headHunter.getLastName());
-		recruitmentdto.setRegisteredDate(headHunter.getRegisteredDate());
-		return recruitmentdto;*/
-		return null;
+		recruitmentdto.setRecruitmentDate(recruitment.getRecruitmentDate());
+		recruitmentdto.setRecruitMentType(recruitment.getRecruitMentType());
+		List<EmployeeDto> list = new ArrayList<EmployeeDto>();
+		// extract Employee data list and set to the 
+		for(Employee emp:recruitment.getEmployee()) {
+			EmployeeDto empDto = new EmployeeDto();
+			empDto.setId(emp.getId());
+			empDto.setEmployeeFirstName(emp.getEmployeeFirstName());
+			empDto.setEmployeeLastName(emp.getEmployeeLastName());
+			empDto.setSkill(emp.getSkill());
+			list.add(empDto);
+		}
+		recruitmentdto.setListOfEmployee(list);
+		recruitmentdto.setHeadHuntId(String.valueOf(recruitment.getHeadHunter().getId()));
+		
+		
+		return recruitmentdto;
 	}
 	
 

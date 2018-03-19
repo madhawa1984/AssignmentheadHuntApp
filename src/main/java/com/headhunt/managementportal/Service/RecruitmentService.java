@@ -8,7 +8,7 @@ public interface RecruitmentService {
 	
 	public List<RecruitmentDto> getAllRecruitments() throws Exception;
 	public RecruitmentDto getRecruitmentById() throws Exception;
-	public List<RecruitmentDto> getHRecruitmentsByHunterId() throws Exception;;
+	public List<RecruitmentDto> getHRecruitmentsByHunterId(long headHunterId) throws Exception;;
 	public RecruitmentDto saveRecruitments(RecruitmentDto recruitment) throws Exception;;
 	public RecruitmentDto modifyRecruitments(RecruitmentDto recruitment) throws Exception;;
 	public RecruitmentDto dropRecruitments(long id) throws Exception;

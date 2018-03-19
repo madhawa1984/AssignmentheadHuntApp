@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Welcome to the Head hunters administration- Portal</title>
+</head>
+<body>
+               Recruitments List For the Head Hunter ID : 
+      <div th:if="${!ListOfRecruitments.empty}"><span th:text="${ListOfRecruitments[0].headHuntId}"/></div>
+      <table> 
+      <tr>
+        <th>RecruitmentId</th> <th>Recruitment Date</th><th>Recruitment Type</th><th>Name</th>
+      </tr>
+      <div th:each="RecruitmentDto,iterStatus : ${ListOfRecruitments}">	
+      
+     <!-- th:text="${potentially_complex_expression} ? 'Hello' : 'Something else'"--> 
+		  <div th:each="emp, empRow : ${RecruitmentDto.listOfEmployee}">   
+		      <tr>
+		      	<td th:text="${empRow.index==0} ? ${RecruitmentDto.id} : ' '"></td>
+		      	<td th:text="${empRow.index==0} ? ${RecruitmentDto.recruitmentDate} : ' '"> </td>
+		        <td th:text="${empRow.index==0} ? ${RecruitmentDto.recruitMentType} : ' '"> </td>   
+		        <td th:text="${emp.employeeFirstName}"></td>
+		        <td > link </td>
+		      </tr>
+		  </div>    
+      </div>
+    </table>
+</body>
+</html>
